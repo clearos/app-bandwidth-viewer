@@ -6,7 +6,7 @@
 
 $app['basename'] = 'bandwidth_viewer';
 $app['version'] = '1.0';
-$app['release'] = '3';
+$app['release'] = '4';
 $app['vendor'] = 'Tim Burgess';
 $app['packager'] = 'Tim Burgess';
 $app['license'] = 'GPLv3';
