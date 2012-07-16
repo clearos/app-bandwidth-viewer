@@ -8,8 +8,8 @@
  * @subpackage Controllers
  * @author     Tim Burgess <trburgess@gmail.com>
  * @copyright  2011-2012 ClearFoundation
+ * @copyright  Flot JS Chart 2007-2009 IOLA and Ole Laursen
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
- * @license    Highcharts Javascript provided under the Creative Commons Attribution NonCommercial 3.0 License.
  * @link       http://www.clearfoundation.com/docs/developer/apps/bandwidth_viewer/
  */
 

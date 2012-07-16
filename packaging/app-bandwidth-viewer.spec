@@ -2,9 +2,9 @@
 Name: app-bandwidth-viewer
 Epoch: 1
 Version: 1.0
-Release: 2%{dist}
+Release: 3%{dist}
 Summary: Bandwidth Viewer
-License: GPLv3 + Creative Commons Attribution NonCommercial
+License: GPLv3
 Group: ClearOS/Apps
 Packager: Tim Burgess
 Vendor: Tim Burgess

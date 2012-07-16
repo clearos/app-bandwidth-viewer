@@ -8,8 +8,8 @@
  * @subpackage Views
  * @author     Tim Burgess <trburgess@gmail.com>
  * @copyright  2012 ClearFoundation
+ * @copyright  Flot JS Chart 2007-2009 IOLA and Ole Laursen
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later. 
- * @license    Highcharts Javascript provided under the Creative Commons Attribution NonCommercial 3.0 License.
  * @link       http://www.clearcenter.com/support/documentation/clearos/bandwidth_viewer/
  */
 
@@ -35,8 +35,8 @@
     $this->lang->load('bandwidth_viewer');
 
 // add javascripts
-echo "<script type='text/javascript' src='/approot/bandwidth_viewer/htdocs/highcharts.js'></script>
-	<script type='text/javascript' src='/approot/bandwidth_viewer/htdocs/livebandwidth.js'></script>";
+echo "<script type='text/javascript' src='/approot/bandwidth_viewer/htdocs/jquery.flot.min.js'></script>";
+echo "<script type='text/javascript' src='/approot/bandwidth_viewer/htdocs/livebandwidth2.js'></script>";
 
 // display chart
-echo chart_widget(lang('bandwidth_viewer_title'), "<div id='bandwidth_viewer' style='width: 100%; height: 400px; margin: 0 auto'></div>");
+echo chart_widget(lang('bandwidth_viewer_title'), "<div id='bandwidth_viewer' style='width: 100%; height: 400px; margin: 0 auto z-index:1'></div>");

@@ -37,7 +37,7 @@ clearos_load_library('base/Validation_Exception');
 			        $this->page->view_exception($e);
 			        return;
 		        }
-                       	usleep(500000);
+                       	usleep(800000);
 			//sleep(1);
 			try {
                         	$shell = new Shell();
@@ -74,13 +74,14 @@ clearos_load_library('base/Validation_Exception');
 					$finish[$interface]['sent']=$pieces[9]*8/1000000; 
                                 }
                         }
-	$timedelta = round($finishtime - $starttime,5);// seconds measured using microtime
+	$timedelta = $finishtime - $starttime;// seconds measured using microtime
 	//echo $timedelta ."|";								
-	$localtime = localtime();
+	//$localtime = localtime();
 	//print_r($localtime);
-	$time = mktime($localtime[2],$localtime[1],$localtime[0],$localtime[4]+1,$localtime[3],$localtime[5]+1900);
+	//$time = mktime($localtime[2],$localtime[1],$localtime[0],$localtime[4]+1,$localtime[3],$localtime[5]+1900);
 	//echo $time;
-	$x = $time * 1000; //formatted to convert from unix time to JS time
+	//$x = $time * 1000; //formatted to convert from unix time to JS time
+	$x = $finishtime * 1000;
 	//echo $x ."|";
 	foreach($ethlist as $interface){
 		//echo $interface ."|";		
@@ -88,8 +89,8 @@ clearos_load_library('base/Validation_Exception');
 		$z = round(($finish[$interface]['sent'] - $start[$interface]['sent'])/$timedelta,3); //echo $z ."|";
 	
 		//assemble array into two series
-		$data[] = array('name'=>$interface.'-recv','x'=>$x,'y'=>$y);
-		$data[] = array('name'=>$interface.'-sent','x'=>$x,'y'=>$z);
+		$data[] = array('label'=>$interface.'-recv','data'=>array($x,$y));
+		$data[] = array('label'=>$interface.'-sent','data'=>array($x,$z));
 	}
 	echo json_encode($data);
          
