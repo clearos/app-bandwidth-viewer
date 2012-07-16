@@ -1,20 +1,23 @@
 $(function () {
     // wipe data, set total points
-    var series = [], totalPoints = 55;
-    var points = new Array();
+    var series = [], totalPoints = 120;
+    var points = [];
     // setup control widget
     var updateInterval = 200;
 
     // setup plot
     var options = {
-	 lines: { show: true },
 	 points: { show: false },
 	 grid: { 
 		borderWidth:0, 
 		minBorderMargin: 20, 
 		backgroundColor: { colors: ["#fff","#ddd"]},
 		hoverable: true },
-        series: { shadowSize:0 }, // drawing is faster without shadows
+        series: { shadowSize:2, 
+		lines: { show: true, fill: 0.1}}, // drawing is faster without shadows
+	legend: { 
+		show: true,
+		position: "sw"},
         //zoom: { interactive: true },
 	//pan: { interactive: true },
         xaxis: { 
@@ -42,7 +45,7 @@ $(function () {
             function onDataReceived(point) {
 		 for (var i = 0; i < point.length; i++) {
 			if(typeof points[i] == "undefined"){
-				points[i] = new Array();
+				points[i] = [];
 			}
 			//points[i].push(point[i].data);
 			points[i][points[i].length] = point[i].data;
