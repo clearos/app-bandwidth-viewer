@@ -79,7 +79,7 @@ try {
         return;
 }
 
-//sleep for moment
+//sleep for moment, ~1sec with 200ms ajax delay
 usleep(800000);
 try {
       	$shell = new Shell();
@@ -119,8 +119,10 @@ foreach($output2 as $line){
 }
 $timedelta = $finishtime - $starttime;// seconds measured using microtime
 //echo $timedelta ."|";								
+
 $localtime = localtime();
 //print_r($localtime);
+
 if($localtime[8]>0){
 	$hours=$localtime[2]+$localtime[8];
 } else {
@@ -128,9 +130,11 @@ if($localtime[8]>0){
 }
 $time = mktime($hours, $localtime[1],$localtime[0],$localtime[4]+1,$localtime[3],$localtime[5]+1900);
 //echo $time;
+
 $x = $time * 1000; //formatted to convert from unix time to JS time
 //$x = $finishtime * 1000;
 //echo $x ."|";
+
 foreach($ethlist as $interface){
 	//echo $interface ."|";		
 	$y = round(($finish[$interface]['recvd'] - $start[$interface]['recvd'])/$timedelta,3); //echo $y ."|";
@@ -140,6 +144,7 @@ foreach($ethlist as $interface){
 	$data[] = array('label'=>$interface.'-recv','data'=>array($x,$y));
 	$data[] = array('label'=>$interface.'-sent','data'=>array($x,$z));
 }
+
 echo json_encode($data);
         
 ?>

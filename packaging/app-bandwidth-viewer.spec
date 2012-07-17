@@ -2,7 +2,7 @@
 Name: app-bandwidth-viewer
 Epoch: 1
 Version: 1.0
-Release: 5%{dist}
+Release: 6%{dist}
 Summary: Bandwidth Viewer
 License: GPLv3
 Group: ClearOS/Apps
@@ -12,6 +12,7 @@ Source: %{name}-%{version}.tar.gz
 Buildarch: noarch
 Requires: %{name}-core = 1:%{version}-%{release}
 Requires: app-base
+Requires: app-network-visualiser
 
 %description
 The Bandwidth Viewer draws a live graph of your interface bandwidth. This helps to determine the current speed of your interfaces and identify bandwidth problems across the network.
