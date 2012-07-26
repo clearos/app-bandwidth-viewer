@@ -12,7 +12,6 @@ Source: %{name}-%{version}.tar.gz
 Buildarch: noarch
 Requires: %{name}-core = 1:%{version}-%{release}
 Requires: app-base
-Requires: app-network-visualiser
 
 %description
 The Bandwidth Viewer draws a live graph of your interface bandwidth. This helps to determine the current speed of your interfaces and identify bandwidth problems across the network.

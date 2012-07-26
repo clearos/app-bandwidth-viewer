@@ -31,6 +31,3 @@ $app['controllers']['bandwidth_viewer']['title'] = lang('bandwidth_viewer_appnam
 // Packaging
 /////////////////////////////////////////////////////////////////////////////
 
-$app['requires'] = array(
-    'app-network-visualiser',
-);
