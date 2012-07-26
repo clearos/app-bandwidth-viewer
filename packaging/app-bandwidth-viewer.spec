@@ -1,8 +1,8 @@
 
 Name: app-bandwidth-viewer
 Epoch: 1
-Version: 1.0
-Release: 6%{dist}
+Version: 1.0.7
+Release: 1%{dist}
 Summary: Bandwidth Viewer
 License: GPLv3
 Group: ClearOS/Apps
