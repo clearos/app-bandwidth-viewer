@@ -36,7 +36,6 @@
 
 // add javascripts
 echo "<script type='text/javascript' src='/approot/bandwidth_viewer/htdocs/jquery.flot.min.js'></script>";
-echo "<script type='text/javascript' src='/approot/bandwidth_viewer/htdocs/livebandwidth2.js'></script>";
 
 // display chart
 echo chart_widget(lang('bandwidth_viewer_title'), "<div id='bandwidth_viewer' style='width: 100%; height: 400px; margin: 0 auto z-index:1'></div>");
