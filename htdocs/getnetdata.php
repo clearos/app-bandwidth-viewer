@@ -96,7 +96,7 @@ try {
 foreach($output1 as $line){
         $line = " " . $line;
         $line2 = preg_replace('/\s+/m',"|",$line);
-        if (strpos($line2,"eth")||preg_match("/^\|wlan/",$line2)||preg_match("/^\|ppp/",$line2)) {
+        if (strpos($line2,"eth")||strpos($line2,"wlan")||strpos($line2,"ppp")||strpos($line2,"bond")) {
 	       	$pieces=explode("|",$line2);
 		$recvdata=explode(":",$pieces[1]);
 		$interface=$recvdata[0];
@@ -109,7 +109,7 @@ foreach($output1 as $line){
 foreach($output2 as $line){
          $line = " " . $line;
          $line2 = preg_replace('/\s+/m',"|",$line);
-         if (strpos($line2,"eth")||preg_match("/^|wlan/",$line2)||preg_match("/^\|ppp/",$line2)){
+         if (strpos($line2,"eth")||strpos($line2,"wlan")||strpos($line2,"ppp")||strpos($line2,"bond")) {
                	$pieces=explode("|",$line2);
 		$recvdata=explode(":",$pieces[1]);
 		$interface=$recvdata[0];
