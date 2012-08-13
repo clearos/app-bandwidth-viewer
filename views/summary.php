@@ -39,3 +39,4 @@ echo "<script type='text/javascript' src='/approot/bandwidth_viewer/htdocs/jquer
 
 // display chart
 echo chart_widget(lang('bandwidth_viewer_title'), "<div id='bandwidth_viewer' style='width: 100%; height: 400px; margin: 0 auto z-index:1'></div>");
+//echo chart_widget(lang('bandwidth_viewer_series'), "<div id='series_select' style='margin: 0 auto'></div>");
