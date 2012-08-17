@@ -37,13 +37,20 @@ $bootstrap = getenv('CLEAROS_BOOTSTRAP') ? getenv('CLEAROS_BOOTSTRAP') : '/usr/c
 require_once $bootstrap . '/bootstrap.php';
 
 ///////////////////////////////////////////////////////////////////////////////
+// T R A N S L A T I O N S
+///////////////////////////////////////////////////////////////////////////////
+
+clearos_load_language('bandwidth_viewer');
+
+///////////////////////////////////////////////////////////////////////////////
 // J A V A S C R I P T
 ///////////////////////////////////////////////////////////////////////////////
 
 header('Content-Type:application/x-javascript');
+
+echo "var lang_select_series = '" . lang('bandwidth_viewer_select_series') . "';";
+
 ?>
-
-
 
 $(function () {
     // wipe data, set total points
@@ -106,25 +113,27 @@ $(function () {
     //set initial series and colour table
     var i = 0,
         choiceContainer = $("#theme-sidebar-container");
-    $(choiceContainer).append('Select Series');
+    $(choiceContainer).append('<h3 style=\'margin: 10px 0px 5px 5px;\'>' + lang_select_series + '</h3>');
 
     $.each(series, function(key, val) {
         //val.color = i;
         //++i;
         l = val.label;
-        var li = $('<li />').appendTo(choiceContainer);
+        var mydiv = $('<div style=\'padding-left: 10px;\'>').appendTo(choiceContainer);
      
-        $('<input name="' + l + '" id="' + l + '" type="checkbox" checked="checked" />').appendTo(li);
+        $('<input name="' + l + '" id="' + l + '" type="checkbox" checked="checked" /></div>').appendTo(mydiv);
         $('<label>', {
             text: l, 
             'for': l
-        }).appendTo(li);
+        }).appendTo(mydiv);
     });
 
     }
 
     //call update function
-    update();
+    $(document).ready(function() {
+        update();
+    });
 
     function update() {
             $.ajax({
