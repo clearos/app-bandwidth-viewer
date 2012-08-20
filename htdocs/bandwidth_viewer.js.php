@@ -37,24 +37,18 @@ $bootstrap = getenv('CLEAROS_BOOTSTRAP') ? getenv('CLEAROS_BOOTSTRAP') : '/usr/c
 require_once $bootstrap . '/bootstrap.php';
 
 ///////////////////////////////////////////////////////////////////////////////
-// T R A N S L A T I O N S
-///////////////////////////////////////////////////////////////////////////////
-
-clearos_load_language('bandwidth_viewer');
-
-///////////////////////////////////////////////////////////////////////////////
 // J A V A S C R I P T
 ///////////////////////////////////////////////////////////////////////////////
 
 header('Content-Type:application/x-javascript');
-
-echo "var lang_select_series = '" . lang('bandwidth_viewer_select_series') . "';";
-
 ?>
+
+
 
 $(function () {
     // wipe data, set total points
-    var series = [], totalPoints = 100, points = [], updateInterval = 200;
+    var series = [], totalPoints = 130, points = [], updateInterval = 200;
+    var choiceContainer = $("#bandwidth_viewer_series");
 
     // setup plot
     var options = {
@@ -98,9 +92,6 @@ $(function () {
                      points[i] = [];
                 }
                 points[i][points[i].length] = point[i].data;
-                //if(points[i].length > totalPoints){
-                //        points[i].shift();
-                //}
 
                 //debug alert(JSON.stringify(points));
                 series[i] = ({
@@ -108,32 +99,23 @@ $(function () {
                         data: points[i]
                 });
          }
-    
-
-    //set initial series and colour table
-    var i = 0,
-        choiceContainer = $("#theme-sidebar-container");
-    $(choiceContainer).append('<h3 style=\'margin: 10px 0px 5px 5px;\'>' + lang_select_series + '</h3>');
-
-    $.each(series, function(key, val) {
-        //val.color = i;
-        //++i;
-        l = val.label;
-        var mydiv = $('<div style=\'padding-left: 10px;\'>').appendTo(choiceContainer);
-     
-        $('<input name="' + l + '" id="' + l + '" type="checkbox" checked="checked" /></div>').appendTo(mydiv);
-        $('<label>', {
-            text: l, 
-            'for': l
-        }).appendTo(mydiv);
-    });
+	 //$(choiceContainer).append('Select Series');
+	
+	 $.each(series, function(key, val) {
+	     l = val.label;
+	     var li = $('<li />').appendTo(choiceContainer);
+	  
+	     $('<input name="' + l + '" id="' + l + '" type="checkbox" checked="checked" />').appendTo(li);
+	     $('<label>', {
+	         text: l, 
+	         'for': l
+	     }).appendTo(li);
+	 });
 
     }
 
     //call update function
-    $(document).ready(function() {
-        update();
-    });
+    update();
 
     function update() {
             $.ajax({
@@ -149,7 +131,6 @@ $(function () {
 			if(typeof points[i] == "undefined"){
 				points[i] = [];
 			}
-			//points[i].push(point[i].data);
 			points[i][points[i].length] = point[i].data;
 			if(points[i].length > totalPoints){
 				points[i].shift();
@@ -164,7 +145,6 @@ $(function () {
 		}
 		//populate second array with choices only
                 var series2 = [];
-                var choiceContainer = $("#theme-sidebar-container");
 
                 choiceContainer.find("input:checked").each(function() {
                     var key = this.name;
@@ -195,7 +175,7 @@ $(function () {
 		border: '1px solid #fdd',
 		padding: '2px',
 		'background-color': '#fff',
-		opacity: 0.80
+		opacity: 0.90
 	}).appendTo("body").fadeIn(100);
     }
 

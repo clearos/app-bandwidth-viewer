@@ -37,7 +37,8 @@
 // add javascripts
 echo "<script type='text/javascript' src='/approot/bandwidth_viewer/htdocs/jquery.flot.min.js'></script>";
 
-// display chart
-echo chart_widget(lang('bandwidth_viewer_title'), "<div id='bandwidth_viewer' style='width: 96%; height: 280px; float: right; z-index: 1;'></div>");
-//echo chart_widget(lang('bandwidth_viewer_series'), "<div id='series_select' style='margin: 0 auto'></div>");
-echo "<div>&nbsp;</div>";
+// display series - not used, display in sidebar
+//echo chart_widget(lang('bandwidth_viewer_series'), "<div id='bandwidth_viewer_series' style='margin:0 auto'></div>");
+
+// display graph
+echo chart_widget(lang('bandwidth_viewer_title'), "<div id='bandwidth_viewer' style='width: 100%; height: 400px; margin: 0 auto z-index:1'></div>");
