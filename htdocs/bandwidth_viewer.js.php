@@ -103,19 +103,21 @@ $(function () {
 	
 	 $.each(series, function(key, val) {
 	     l = val.label;
-	     var li = $('<li />').appendTo(choiceContainer);
+	     var mydiv = $('<div style=\'padding-left: 10px;\'>').appendTo(choiceContainer);
 	  
-	     $('<input name="' + l + '" id="' + l + '" type="checkbox" checked="checked" />').appendTo(li);
+	     $('<input name="' + l + '" id="' + l + '" type="checkbox" checked="checked" />').appendTo(mydiv);
 	     $('<label>', {
 	         text: l, 
 	         'for': l
-	     }).appendTo(li);
+	     }).appendTo(mydiv);
 	 });
 
     }
 
     //call update function
-    update();
+    $(document).ready(function() {
+        update();
+    });
 
     function update() {
             $.ajax({

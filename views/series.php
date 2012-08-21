@@ -40,4 +40,4 @@ $this->lang->load('bandwidth_viewer');
 ///////////////////////////////////////////////////////////////////////////////
 
 echo "<p>" . lang('bandwidth_viewer_series_help') . "</p>";
-echo "<div id='bandwidth_viewer_series'></div>";
+echo "<div id='bandwidth_viewer_series' style='padding-left: 10px;'></div>";
