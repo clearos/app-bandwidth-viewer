@@ -94,28 +94,37 @@ try {
 
 // parse start data                                                                   
 foreach($output1 as $line){
-        $line = " " . $line;
-        $line2 = preg_replace('/\s+/m',"|",$line);
-        if (strpos($line2,"eth")||strpos($line2,"wlan")||strpos($line2,"ppp")||strpos($line2,"bond")) {
-	       	$pieces=explode("|",$line2);
-		$recvdata=explode(":",$pieces[1]);
-		$interface=$recvdata[0];
+        if (strpos($line,"eth")||strpos($line,"wlan")||strpos($line,"ppp")||strpos($line,"bond")) {
+		$startdata=explode(":",$line);
+		$interface=trim($startdata[0]);
+                //append space to start so that it works on low byte counts
+		$startdata[1] = " " . $startdata[1];
+		//replace with pipes
+                $startdata[1] = preg_replace('/\s+/m',"|",$startdata[1]);
+
+	       	$pieces=explode("|",$startdata[1]);
+		//assemble array
 		$ethlist[] = $interface;
-		$start[$interface]['recvd']=$recvdata[1]*8/1000000;
+		$start[$interface]['recvd']=$pieces[1]*8/1000000;
 		$start[$interface]['sent']=$pieces[9]*8/1000000;
          }
 }						
 // parse finish data
 foreach($output2 as $line){
-         $line = " " . $line;
-         $line2 = preg_replace('/\s+/m',"|",$line);
-         if (strpos($line2,"eth")||strpos($line2,"wlan")||strpos($line2,"ppp")||strpos($line2,"bond")) {
-               	$pieces=explode("|",$line2);
-		$recvdata=explode(":",$pieces[1]);
-		$interface=$recvdata[0];
-                $finish[$interface]['recvd']=$recvdata[1]*8/1000000;
-		$finish[$interface]['sent']=$pieces[9]*8/1000000; 
-         }
+	if (strpos($line,"eth")||strpos($line,"wlan")||strpos($line,"ppp")||strpos($line,"bond")) {
+                $startdata=explode(":",$line);
+                $interface=trim($startdata[0]);
+                //append space to start so that it works on low byte counts
+                $startdata[1] = " " . $startdata[1];
+                //replace with pipes
+                $startdata[1] = preg_replace('/\s+/m',"|",$startdata[1]);
+
+                $pieces=explode("|",$startdata[1]);
+                //assemble array
+                $finish[$interface]['recvd']=$pieces[1]*8/1000000;
+                $finish[$interface]['sent']=$pieces[9]*8/1000000;
+
+	}
 }
 $timedelta = $finishtime - $starttime;// seconds measured using microtime
 //echo $timedelta ."|";								
@@ -132,15 +141,11 @@ $time = mktime($hours, $localtime[1],$localtime[0],$localtime[4]+1,$localtime[3]
 //echo $time;
 
 $x = $time * 1000; //formatted to convert from unix time to JS time
-//$x = $finishtime * 1000;
-//echo $x ."|";
 
 foreach($ethlist as $interface){
-	//echo $interface ."|";		
-	$y = round(($finish[$interface]['recvd'] - $start[$interface]['recvd'])/$timedelta,3); //echo $y ."|";
-	$z = round(($finish[$interface]['sent'] - $start[$interface]['sent'])/$timedelta,3); //echo $z ."|";
+	$y = round(($finish[$interface]['recvd'] - $start[$interface]['recvd'])/$timedelta,3);
+	$z = round(($finish[$interface]['sent'] - $start[$interface]['sent'])/$timedelta,3);
 
-	//assemble array into two series
 	$data[] = array('label'=>$interface.'-recv','data'=>array($x,$y));
 	$data[] = array('label'=>$interface.'-sent','data'=>array($x,$z));
 }
