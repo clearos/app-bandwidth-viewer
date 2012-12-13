@@ -31,3 +31,6 @@ $app['controllers']['bandwidth_viewer']['title'] = lang('bandwidth_viewer_appnam
 // Packaging
 /////////////////////////////////////////////////////////////////////////////
 
+$app['delete_dependency'] = array(
+    'app-bandwidth-viewer-core'
+);
