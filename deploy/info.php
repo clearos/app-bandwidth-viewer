@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'bandwidth_viewer';
-$app['version'] = '1.1.3';
+$app['version'] = '1.4.22';
 $app['release'] = '1';
 $app['vendor'] = 'Tim Burgess';
 $app['packager'] = 'Tim Burgess';
@@ -31,6 +31,10 @@ $app['controllers']['bandwidth_viewer']['title'] = lang('bandwidth_viewer_appnam
 /////////////////////////////////////////////////////////////////////////////
 // Packaging
 /////////////////////////////////////////////////////////////////////////////
+
+$app['core_requires'] = array(
+    'app-base-core >= 1:1.4.22'
+);
 
 $app['delete_dependency'] = array(
     'app-bandwidth-viewer-core'

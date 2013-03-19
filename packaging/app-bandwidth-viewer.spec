@@ -1,7 +1,7 @@
 
 Name: app-bandwidth-viewer
 Epoch: 1
-Version: 1.1.3
+Version: 1.4.22
 Release: 1%{dist}
 Summary: Bandwidth Viewer
 License: GPLv3
@@ -21,6 +21,7 @@ Summary: Bandwidth Viewer - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
+Requires: app-base-core >= 1:1.4.22
 
 %description core
 The Bandwidth Viewer draws a live graph of your interface bandwidth. This helps to determine the current speed of your interfaces and identify bandwidth problems across the network.
@@ -35,11 +36,6 @@ This package provides the core API and libraries.
 mkdir -p -m 755 %{buildroot}/usr/clearos/apps/bandwidth_viewer
 cp -r * %{buildroot}/usr/clearos/apps/bandwidth_viewer/
 
-
-if [ -d %{buildroot}/usr/clearos/apps/bandwidth_viewer/libraries_zendguard ]; then
-    rm -rf %{buildroot}/usr/clearos/apps/bandwidth_viewer/libraries
-    mv %{buildroot}/usr/clearos/apps/bandwidth_viewer/libraries_zendguard %{buildroot}/usr/clearos/apps/bandwidth_viewer/libraries
-fi
 
 %post
 logger -p local6.notice -t installer 'app-bandwidth-viewer - installing'
