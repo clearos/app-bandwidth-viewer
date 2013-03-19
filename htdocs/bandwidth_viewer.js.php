@@ -49,6 +49,7 @@ $(function () {
     // wipe data, set total points
     var series = [], totalPoints = 130, points = [], updateInterval = 200;
     var choiceContainer = $("#bandwidth_viewer_series");
+    var htdocs_base = "<?php echo clearos_app_htdocs('bandwidth_viewer') ?>";
 
     // setup plot
     var options = {
@@ -79,7 +80,7 @@ $(function () {
 
     //pull data one time to get series
     $.ajax({
-                url: "/approot/bandwidth_viewer/htdocs/getnetdata.php",
+                url: htdocs_base + "/getnetdata.php",
                 method: 'GET',
                 dataType: 'json',
                 cache: false,
@@ -121,7 +122,7 @@ $(function () {
 
     function update() {
             $.ajax({
-                url: "/approot/bandwidth_viewer/htdocs/getnetdata.php",
+                url: htdocs_base + "/getnetdata.php",
                 method: 'GET',
                 dataType: 'json',
 		cache: false,
@@ -201,3 +202,5 @@ $(function () {
 
 
 });
+
+// vim: syntax=javascript

@@ -35,7 +35,7 @@
     $this->lang->load('bandwidth_viewer');
 
 // add javascripts
-echo "<script type='text/javascript' src='/approot/bandwidth_viewer/htdocs/jquery.flot.min.js'></script>";
+echo "<script type='text/javascript' src='" . clearos_app_htdocs('bandwidth_viewer') . "/jquery.flot.min.js'></script>";
 
 // display series - not used, display in sidebar
 //echo chart_widget(lang('bandwidth_viewer_series'), "<div id='bandwidth_viewer_series' style='margin:0 auto'></div>");
