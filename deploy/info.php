@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'bandwidth_viewer';
-$app['version'] = '1.4.22';
+$app['version'] = '1.4.30';
 $app['release'] = '1';
 $app['vendor'] = 'Tim Burgess';
 $app['packager'] = 'Tim Burgess';
