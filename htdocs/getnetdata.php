@@ -3,9 +3,9 @@
 /**
  * Bandwidth Viewer JSON Data
  *
- * @category   Apps
- * @package    Bandwidth Viewer
- * @subpackage
+ * @category   apps
+ * @package    bandwidth-viewer
+ * @subpackage scripts
  * @author     Tim Burgess <trburgess@gmail.com>
  * @copyright  2011-2012 ClearFoundation
  * @copyright  Flot JS Chart 2007-2009 IOLA and Ole Laursen

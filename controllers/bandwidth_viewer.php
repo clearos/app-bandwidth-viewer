@@ -3,9 +3,9 @@
 /**
  * Bandwidth Viewer.
  *
- * @category   Apps
- * @package    Bandwidth Viewer
- * @subpackage Controllers
+ * @category   apps
+ * @package    bandwidth-viewer
+ * @subpackage controllers
  * @author     Tim Burgess <trburgess@gmail.com>
  * @copyright  2011-2012 ClearFoundation
  * @copyright  Flot JS Chart 2007-2009 IOLA and Ole Laursen
@@ -37,9 +37,9 @@
 /**
  * Bandwidth Viewer Controller.
  *
- * @category   Apps
- * @package    Bandwidth Viewer
- * @subpackage Controllers
+ * @category   apps
+ * @package    bandwidth-viewer
+ * @subpackage controllers
  * @author     Tim Burgess <trburgess@gmail.com>
  * @copyright  2011-2012 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later

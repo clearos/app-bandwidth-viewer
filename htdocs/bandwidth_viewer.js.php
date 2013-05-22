@@ -3,9 +3,9 @@
 /**
  * Bandwidth_Viewer javascript helper.
  *
- * @category   Apps
- * @package    Bandwidth Viewer
- * @subpackage Javascript
+ * @category   apps
+ * @package    bandwidth-viewer
+ * @subpackage javascript
  * @author     Tim Burgess <trburgess@gmail.com>
  * @copyright  2011 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
