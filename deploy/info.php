@@ -17,7 +17,7 @@ $app['description'] = lang('bandwidth_viewer_app_description');
 // App name and categories
 /////////////////////////////////////////////////////////////////////////////
 
-$app['name'] = lang('bandwidth_viewer_appname');
+$app['name'] = lang('bandwidth_viewer_app_name');
 $app['category'] = lang('base_category_reports');
 $app['subcategory'] = lang('base_category_network');
 
@@ -26,7 +26,7 @@ $app['subcategory'] = lang('base_category_network');
 // Controllers
 /////////////////////////////////////////////////////////////////////////////
 
-$app['controllers']['bandwidth_viewer']['title'] = lang('bandwidth_viewer_appname');
+$app['controllers']['bandwidth_viewer']['title'] = lang('bandwidth_viewer_app_name');
 
 /////////////////////////////////////////////////////////////////////////////
 // Packaging
