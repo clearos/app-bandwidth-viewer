@@ -1,7 +1,7 @@
 
 Name: app-bandwidth-viewer
 Epoch: 1
-Version: 1.5.0
+Version: 1.6.5
 Release: 1%{dist}
 Summary: Bandwidth Viewer
 License: GPLv3
@@ -73,8 +73,6 @@ exit 0
 %files core
 %defattr(-,root,root)
 %exclude /usr/clearos/apps/bandwidth_viewer/packaging
-%exclude /usr/clearos/apps/bandwidth_viewer/tests
 %dir /usr/clearos/apps/bandwidth_viewer
 /usr/clearos/apps/bandwidth_viewer/deploy
 /usr/clearos/apps/bandwidth_viewer/language
-/usr/clearos/apps/bandwidth_viewer/libraries

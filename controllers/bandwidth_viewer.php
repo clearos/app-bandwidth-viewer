@@ -7,8 +7,8 @@
  * @package    bandwidth-viewer
  * @subpackage controllers
  * @author     Tim Burgess <trburgess@gmail.com>
- * @copyright  2011-2012 ClearFoundation
- * @copyright  Flot JS Chart 2007-2009 IOLA and Ole Laursen
+ * @copyright  2011-2014 ClearFoundation
+ * @copyright  2007-2009 IOLA and Ole Laursen (Flot JS Chart)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/bandwidth_viewer/
  */
@@ -41,7 +41,7 @@
  * @package    bandwidth-viewer
  * @subpackage controllers
  * @author     Tim Burgess <trburgess@gmail.com>
- * @copyright  2011-2012 ClearFoundation
+ * @copyright  2011-2014 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/bandwidth_viewer/
  */
@@ -50,11 +50,16 @@
 
 use \Exception as Exception; 
 
-class Bandwidth_viewer extends ClearOS_Controller {
+class Bandwidth_Viewer extends ClearOS_Controller
+{
+    /**
+     * Index controller.
+     * 
+     * @return view
+     */
 
-	function index() 
-	{
-
+    function index() 
+    {
         // Load libraries
         //---------------
 
@@ -68,7 +73,7 @@ class Bandwidth_viewer extends ClearOS_Controller {
 
         $this->page->view_form('bandwidth_viewer/summary', $data, lang('bandwidth_viewer_app_name'));
 
-	}
+    }
 
 }
 
