@@ -63,6 +63,26 @@ use \clearos\apps\base\Validation_Exception as Validation_Exception;
 
 clearos_load_library('base/Validation_Exception');
 
+// TODO: this should reference Iface->is_configurable, but in a fast/efficient way
+function is_configurable($iface)
+{
+    if (
+        preg_match('/^eth/', $iface)
+        || preg_match('/^wlan/', $iface)
+        || preg_match('/^ath/', $iface)
+        || preg_match('/^em/', $iface)
+        || preg_match('/^en/', $iface)
+        || preg_match('/^p\d+p/', $iface)
+        || preg_match('/^br/', $iface)
+        || preg_match('/^bond/', $iface)
+        || preg_match('/^ppp/', $iface)
+    ) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // DATA
 ///////////////////////////////////////////////////////////////////////////////
@@ -91,11 +111,12 @@ try {
     return;
 }
 
-// parse start data                                                                   
+// parse start data
 foreach ($output1 as $line) {
-    if (strpos($line, "eth") || strpos($line, "wlan") || strpos($line, "ppp") || strpos($line, "bond")) {
-        $startdata = explode(":", $line);
-        $interface = trim($startdata[0]);
+    $startdata = explode(":", $line);
+    $interface = trim($startdata[0]);
+
+    if (is_configurable($interface)) {
         // append space to start so that it works on low byte counts
         $startdata[1] = " " . $startdata[1];
         // replace with pipes
@@ -107,13 +128,14 @@ foreach ($output1 as $line) {
         $start[$interface]['recvd'] = $pieces[1]*8/1000000;
         $start[$interface]['sent'] = $pieces[9]*8/1000000;
     }
-}                        
+}
 
 // parse finish data
 foreach ($output2 as $line) {
-    if (strpos($line, "eth") || strpos($line, "wlan") || strpos($line, "ppp") || strpos($line, "bond")) {
-        $startdata = explode(":", $line);
-        $interface = trim($startdata[0]);
+    $startdata = explode(":", $line);
+    $interface = trim($startdata[0]);
+
+    if (is_configurable($interface)) {
         // append space to start so that it works on low byte counts
         $startdata[1] = " " . $startdata[1];
         // replace with pipes
