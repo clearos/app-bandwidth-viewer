@@ -32,15 +32,15 @@
 
 
 // load language
-    $this->lang->load('bandwidth_viewer');
+$this->lang->load('bandwidth_viewer');
 
 // add javascripts
 echo "<script type='text/javascript' src='" . clearos_app_htdocs('bandwidth_viewer') . "/jquery.flot.min.js'></script>";
 
 // display series - not used, display in sidebar
-//echo chart_widget(lang('bandwidth_viewer_series'), "<div id='bandwidth_viewer_series' style='margin:0 auto'></div>");
+echo chart_widget(lang('bandwidth_viewer_series'), "bandwidth_viewer_series");
 
 // display graph
-echo chart_widget(lang('bandwidth_viewer_title'), "<div id='bandwidth_viewer' style='width: 96%; height: 280px; float: right; z-index:1'></div>");
+echo chart_widget(lang('bandwidth_viewer_title'), "bandwidth_viewer");
 
 echo "<div>&nbsp;</div>";
