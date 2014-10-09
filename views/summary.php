@@ -38,9 +38,9 @@ $this->lang->load('bandwidth_viewer');
 echo "<script type='text/javascript' src='" . clearos_app_htdocs('bandwidth_viewer') . "/jquery.flot.min.js'></script>";
 
 // display series - not used, display in sidebar
-echo chart_widget(lang('bandwidth_viewer_series'), "bandwidth_viewer_series");
+echo chart_container(lang('bandwidth_viewer_series'), "bandwidth_viewer_series");
 
 // display graph
-echo chart_widget(lang('bandwidth_viewer_title'), "bandwidth_viewer");
+echo chart_container(lang('bandwidth_viewer_title'), "bandwidth_viewer");
 
 echo "<div>&nbsp;</div>";
