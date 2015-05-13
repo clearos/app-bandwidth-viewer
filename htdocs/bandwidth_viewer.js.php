@@ -53,154 +53,150 @@ $(function () {
 
     // setup plot
     var options = {
-	 points: { show: false },
-	 grid: { 
-		borderWidth:0, 
-		minBorderMargin: 20, 
-		backgroundColor: { colors: ["#fff","#eee"]},
-		hoverable: true },
+     points: { show: false },
+     grid: { 
+        borderWidth:0, 
+        minBorderMargin: 20, 
+        backgroundColor: { colors: ["#fff","#eee"]},
+        hoverable: true },
         series: { shadowSize:2, 
-		lines: { show: true, fill: 0.1}}, // drawing is faster without shadows
-	legend: { 
-		show: true,
-		position: "nw"},
+        lines: { show: true, fill: 0.1}}, // drawing is faster without shadows
+    legend: { 
+        show: true,
+        position: "nw"},
         //zoom: { interactive: true },
-	//pan: { interactive: true },
+    //pan: { interactive: true },
         xaxis: { 
-		show: true, 
-		//ticks: [], 
-		mode: "time" },
-	yaxis: {
-		min: 0}
-		//zoomRange: [0,1000],
-		//panRange: [0,1000]
-		
+        show: true, 
+        //ticks: [], 
+        mode: "time" },
+    yaxis: {
+        min: 0}
+        //zoomRange: [0,1000],
+        //panRange: [0,1000]
+        
     };
     var plot = $.plot($("#bandwidth_viewer"), series, options);
 
     //pull data one time to get series
     $.ajax({
-                url: htdocs_base + "/getnetdata.php",
-                method: 'GET',
-                dataType: 'json',
-                cache: false,
-                success: initialise
+        url: htdocs_base + "/getnetdata.php",
+        method: 'GET',
+        dataType: 'json',
+        cache: false,
+        success: initialise
     });
 
     function initialise(point) {
         for (var i = 0; i < point.length; i++) {
-                if(typeof points[i] == "undefined"){
-                     points[i] = [];
-                }
-                points[i][points[i].length] = point[i].data;
+            if(typeof points[i] == "undefined"){
+                 points[i] = [];
+            }
+            points[i][points[i].length] = point[i].data;
 
-                //debug alert(JSON.stringify(points));
-                series[i] = ({
-                        label: point[i].label,
-                        data: points[i]
-                });
-         }
-	 //$(choiceContainer).append('Select Series');
-	
-	 $.each(series, function(key, val) {
-	     l = val.label;
-	     var mydiv = $('<div style=\'padding-left: 10px;\'>').appendTo(choiceContainer);
-	  
-	     $('<input name="' + l + '" id="' + l + '" type="checkbox" checked="checked" />').appendTo(mydiv);
-	     $('<label>', {
-	         text: l, 
-	         'for': l
-	     }).appendTo(mydiv);
-	 });
-
+            //debug alert(JSON.stringify(points));
+            series[i] = ({
+                label: point[i].label,
+                data: points[i]
+            });
+        }
+        //$(choiceContainer).append('Select Series');
+    
+        $.each(series, function(key, val) {
+            l = val.label;
+            var mydiv = $('<div>').appendTo(choiceContainer);
+          
+            $('<input name="' + l + '" id="' + l + '" type="checkbox" checked="checked" />').appendTo(mydiv);
+            $('<label>', {
+                text: l, 
+                'for': l
+            }).appendTo(mydiv);
+        });
     }
 
     //call update function
     $(document).ready(function() {
         update();
+        $('#bw_series_container').insertAfter('#theme-sidebar-container');
     });
 
     function update() {
-            $.ajax({
-                url: htdocs_base + "/getnetdata.php",
-                method: 'GET',
-                dataType: 'json',
-		cache: false,
-                success: onDataReceived
+        $.ajax({
+            url: htdocs_base + "/getnetdata.php",
+            method: 'GET',
+            dataType: 'json',
+            cache: false,
+            success: onDataReceived
+        });
+    }
+
+    function onDataReceived(point) {
+        for (var i = 0; i < point.length; i++) {
+            if(typeof points[i] == "undefined"){
+                points[i] = [];
+            }
+            points[i][points[i].length] = point[i].data;
+            if(points[i].length > totalPoints){
+                points[i].shift();
+            }
+            
+            //debug alert(JSON.stringify(points));
+            series[i] = ({ 
+                label: point[i].label, 
+                data: points[i],
+                color: i
             });
+        }
+        //populate second array with choices only
+        var series2 = [];
 
-            function onDataReceived(point) {
-		for (var i = 0; i < point.length; i++) {
-			if(typeof points[i] == "undefined"){
-				points[i] = [];
-			}
-			points[i][points[i].length] = point[i].data;
-			if(points[i].length > totalPoints){
-				points[i].shift();
-			}
-			
-			//debug alert(JSON.stringify(points));
-			series[i] = ({ 
-				label: point[i].label, 
-				data: points[i],
-				color: i
-			});
-		}
-		//populate second array with choices only
-                var series2 = [];
-
-                choiceContainer.find("input:checked").each(function() {
-                    var key = this.name;
+        choiceContainer.find("input:checked").each(function() {
+            var key = this.name;
   
-                    for (var i = 0; i < series.length; i++) {
-                        if (series[i].label === key) {
-                            series2.push(series[i]);
-                            return true;
-                        }
-                    }
-                });
-
-		
-		setTimeout(update,updateInterval);   
-		
-     	        plot.setData(series2);
-		plot.setupGrid()
-	        plot.draw();
-	    }
+            for (var i = 0; i < series.length; i++) {
+                if (series[i].label === key) {
+                    series2.push(series[i]);
+                    return true;
+                }
+            }
+        });
+        
+        setTimeout(update,updateInterval);   
+        
+        plot.setData(series2);
+        plot.setupGrid()
+        plot.draw();
     }
 
     function showTooltip(x, y, contents) {
-	$('<div id="tooltip" style="z-index:10">' + contents + '</div>').css( {
-		position: 'absolute',
-		display: 'none',
-		top: y + 5,
-		left: x + 5,
-		border: '1px solid #fdd',
-		padding: '2px',
-		'background-color': '#fff',
-		opacity: 0.90
-	}).appendTo("body").fadeIn(100);
+        $('<div id="tooltip" style="z-index:10">' + contents + '</div>').css( {
+            position: 'absolute',
+            display: 'none',
+            top: y + 5,
+            left: x + 5,
+            border: '1px solid #fdd',
+            padding: '2px',
+            'background-color': '#fff',
+            opacity: 0.90
+        }).appendTo("body").fadeIn(100);
     }
 
     var previousPoint = null;
     $("#bandwidth_viewer").bind("plothover", function (event, pos, item) {
-    	$("#x").text(pos.x.toFixed(2));
- 	$("#y").text(pos.y.toFixed(2));
-		if (item) {
-			if (previousPoint != item.dataIndex) {
-				previousPoint = item.dataIndex;
-				$("#tooltip").remove();
-				var x = item.datapoint[0].toFixed(2), y = item.datapoint[1].toFixed(2);
-				showTooltip(item.pageX, item.pageY, item.series.label + " = " + y);
-			}
-		}
-		else {
-			$("#tooltip").remove();
-			previousPoint = null;
-		}
+        $("#x").text(pos.x.toFixed(2));
+        $("#y").text(pos.y.toFixed(2));
+        if (item) {
+            if (previousPoint != item.dataIndex) {
+                previousPoint = item.dataIndex;
+                $("#tooltip").remove();
+                var x = item.datapoint[0].toFixed(2), y = item.datapoint[1].toFixed(2);
+                showTooltip(item.pageX, item.pageY, item.series.label + " = " + y);
+            }
+        } else {
+            $("#tooltip").remove();
+            previousPoint = null;
+        }
     });  
-
-
 });
 
 // vim: syntax=javascript

@@ -45,10 +45,10 @@
  * @link       http://www.clearfoundation.com/docs/developer/apps/bandwidth_viewer/
  */
 
-class Report extends ClearOS_Controller
+class Series extends ClearOS_Controller
 {
     /**
-     * Default controller
+     * Sidebar default controller
      *
      * @return view
      */
@@ -63,6 +63,6 @@ class Report extends ClearOS_Controller
         // Load views
         //-----------
 
-        $this->page->view_form('summary', array(), lang('bandwidth_viewer_summary'));
+        $this->page->view_form('series', array(), lang('bandwidth_viewer_series'));
     }
 }

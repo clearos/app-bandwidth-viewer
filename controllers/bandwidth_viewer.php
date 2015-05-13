@@ -68,11 +68,12 @@ class Bandwidth_Viewer extends ClearOS_Controller
         // Load view data
         //---------------
 
-        // Load views (default summary.php)
-        //--------------
+        // Load controllers
+        //-----------------
 
-        $this->page->view_form('bandwidth_viewer/summary', $data, lang('bandwidth_viewer_app_name'));
+        $controllers = array('bandwidth_viewer/report', 'bandwidth_viewer/series');
 
+        $this->page->view_controllers($controllers, lang('bandwidth_viewer_app_name'));
     }
 
 }

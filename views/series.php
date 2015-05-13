@@ -39,7 +39,6 @@ $this->lang->load('bandwidth_viewer');
 // Form 
 ///////////////////////////////////////////////////////////////////////////////
 
-echo sidebar_header(lang('bandwidth_viewer_series'));
-echo sidebar_text(lang('bandwidth_viewer_series_help'));
-echo sidebar_text("<div id='bandwidth_viewer_series' style='padding-left: 10px;'></div>");
-echo sidebar_footer();
+echo box_open(lang('bandwidth_viewer_series'), array('id' => 'bw_series_container'));
+echo box_content("<div id='bandwidth_viewer_series'></div>");
+echo box_close();
