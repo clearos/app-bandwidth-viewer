@@ -84,7 +84,10 @@ $(function () {
         method: 'GET',
         dataType: 'json',
         cache: false,
-        success: initialise
+        success: initialise,
+        error: function(xhr, text, err) {
+            setTimeout(update,updateInterval);   
+        }
     });
 
     function initialise(point) {
@@ -126,7 +129,10 @@ $(function () {
             method: 'GET',
             dataType: 'json',
             cache: false,
-            success: onDataReceived
+            success: onDataReceived,
+            error: function(xhr, text, err) {
+                setTimeout(update,updateInterval);   
+            }
         });
     }
 

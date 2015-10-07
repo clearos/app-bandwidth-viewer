@@ -157,6 +157,8 @@ if ($localtime[8]>0) {
     $hours=$localtime[2];
 }
 
+date_default_timezone_set('Europe/London'); 
+
 $time = mktime($hours, $localtime[1], $localtime[0], $localtime[4]+1, $localtime[3], $localtime[5] + 1900);
 
 $x = $time * 1000; //formatted to convert from unix time to JS time
