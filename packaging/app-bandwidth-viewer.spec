@@ -1,7 +1,7 @@
 
 Name: app-bandwidth-viewer
 Epoch: 1
-Version: 2.1.7
+Version: 2.1.8
 Release: 1%{dist}
 Summary: Bandwidth Viewer
 License: GPLv3
