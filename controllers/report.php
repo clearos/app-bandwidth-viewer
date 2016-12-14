@@ -63,6 +63,6 @@ class Report extends ClearOS_Controller
         // Load views
         //-----------
 
-        $this->page->view_form('summary', array(), lang('bandwidth_viewer_summary'));
+        $this->page->view_form('summary', array(), lang('bandwidth_viewer_app_name'));
     }
 }
